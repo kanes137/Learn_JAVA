@@ -26,7 +26,7 @@ public class GroupCreationTests {
   public void testGroupCreationTests() throws Exception {
     goToGroupPage();
     initGroupCreation();
-    fillGroupForm("Домашнее задание 4", "Домашнее задание  4", "Домашнее задание   4");
+    fillGroupForm(new GroupData("Домашнее задание 4", "Домашнее задание  4", "Домашнее задание   4"));
     submitGroupCreation();
     returnGroupPage();
     logout();
@@ -44,14 +44,14 @@ public class GroupCreationTests {
     driver.findElement(By.name("submit")).click();
   }
 
-  private void fillGroupForm(String field1, String field2, String field3) {
+  private void fillGroupForm(GroupData groupData) {
     driver.findElement(By.name("group_name")).click();
     driver.findElement(By.name("group_name")).clear();
-    driver.findElement(By.name("group_name")).sendKeys(field1);
+    driver.findElement(By.name("group_name")).sendKeys(groupData.getField1());
     driver.findElement(By.name("group_header")).clear();
-    driver.findElement(By.name("group_header")).sendKeys(field2);
+    driver.findElement(By.name("group_header")).sendKeys(groupData.getField2());
     driver.findElement(By.name("group_footer")).clear();
-    driver.findElement(By.name("group_footer")).sendKeys(field3);
+    driver.findElement(By.name("group_footer")).sendKeys(groupData.getField3());
   }
 
   private void initGroupCreation() {
