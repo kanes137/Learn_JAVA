@@ -1,5 +1,6 @@
 package ru.test.homework;
 
+import model.GroupData;
 import org.testng.annotations.Test;
 
 public class GroupCreationTests extends TestBase {

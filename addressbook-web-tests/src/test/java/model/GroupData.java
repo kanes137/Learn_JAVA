@@ -1,4 +1,4 @@
-package ru.test.homework;
+package model;
 
 public class GroupData {
   private final String field1;
