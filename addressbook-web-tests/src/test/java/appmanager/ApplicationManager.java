@@ -9,11 +9,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class ApplicationManager {
+
   WebDriver wd;
+
+  private NavigationHelper navigationHelper;
 
   public void init() {
     wd = new FirefoxDriver();
     wd.get("http://localhost/addressbook/");
+    navigationHelper = new NavigationHelper(wd);
     login("admin", "secret");
   }
 
@@ -76,10 +80,6 @@ public class ApplicationManager {
     wd.findElement(By.name("new")).click();
   }
 
-  public void goToGroupPage() {
-    wd.findElement(By.linkText("groups")).click();
-  }
-
   public void stop() {
     wd.quit();
   }
@@ -108,5 +108,9 @@ public class ApplicationManager {
 
   public void selectGroup() {
     wd.findElement(By.name("selected[]")).click();
+  }
+
+  public NavigationHelper getNavigationHelper() {
+    return navigationHelper;
   }
 }
