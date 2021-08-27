@@ -1,7 +1,6 @@
 package appmanager;
 
 import model.ContactData;
-import model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
@@ -12,12 +11,14 @@ public class ApplicationManager {
 
   WebDriver wd;
 
+  private GroupHelper groupHelper;
   private NavigationHelper navigationHelper;
 
   public void init() {
     wd = new FirefoxDriver();
     wd.get("http://localhost/addressbook/");
     navigationHelper = new NavigationHelper(wd);
+    groupHelper = new GroupHelper(wd);
     login("admin", "secret");
   }
 
@@ -58,28 +59,6 @@ public class ApplicationManager {
     wd.findElement(By.linkText("Logout")).click();
   }
 
-  public void returnGroupPage() {
-    wd.findElement(By.linkText("group page")).click();
-  }
-
-  public void submitGroupCreation() {
-    wd.findElement(By.name("submit")).click();
-  }
-
-  public void fillGroupForm(GroupData groupData) {
-    wd.findElement(By.name("group_name")).click();
-    wd.findElement(By.name("group_name")).clear();
-    wd.findElement(By.name("group_name")).sendKeys(groupData.getField1());
-    wd.findElement(By.name("group_header")).clear();
-    wd.findElement(By.name("group_header")).sendKeys(groupData.getField2());
-    wd.findElement(By.name("group_footer")).clear();
-    wd.findElement(By.name("group_footer")).sendKeys(groupData.getField3());
-  }
-
-  public void initGroupCreation() {
-    wd.findElement(By.name("new")).click();
-  }
-
   public void stop() {
     wd.quit();
   }
@@ -102,15 +81,11 @@ public class ApplicationManager {
     }
   }
 
-  public void deleteSelectedGroups() {
-    wd.findElement(By.name("delete")).click();
-  }
-
-  public void selectGroup() {
-    wd.findElement(By.name("selected[]")).click();
-  }
-
   public NavigationHelper getNavigationHelper() {
     return navigationHelper;
+  }
+
+  public GroupHelper getGroupHelper() {
+    return groupHelper;
   }
 }
