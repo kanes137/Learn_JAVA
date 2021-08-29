@@ -16,4 +16,8 @@ public class NavigationHelper extends BaseHelper {
   public void goToHomePage() {
     click(By.linkText("home page"));
   }
+
+  public void acceptAlert() {
+    wd.switchTo().alert().accept();
+  }
 }

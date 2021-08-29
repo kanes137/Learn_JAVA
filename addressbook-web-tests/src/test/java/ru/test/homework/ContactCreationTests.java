@@ -11,6 +11,5 @@ public class ContactCreationTests extends TestBase {
     app.getContactHelper().fillContactForm(new ContactData("Goose", "Alekseevich", "Mr", "kanes173"));
     app.getContactHelper().saveContact();
     app.getNavigationHelper().goToHomePage();
-    app.getSessionHelper().logout();
   }
 }
