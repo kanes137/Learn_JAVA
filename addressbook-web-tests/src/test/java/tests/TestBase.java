@@ -1,4 +1,4 @@
-package ru.test.homework;
+package tests;
 
 import appmanager.ApplicationManager;
 import org.openqa.selenium.remote.BrowserType;

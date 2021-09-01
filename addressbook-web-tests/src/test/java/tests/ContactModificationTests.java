@@ -1,4 +1,4 @@
-package ru.test.homework;
+package tests;
 
 import model.ContactData;
 import model.GroupData;
