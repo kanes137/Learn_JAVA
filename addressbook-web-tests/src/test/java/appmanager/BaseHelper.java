@@ -12,9 +12,14 @@ public class BaseHelper {
   }
 
   protected void type(By locator, String text) {
-    wd.findElement(locator).click();
-    wd.findElement(locator).clear();
-    wd.findElement(locator).sendKeys(text);
+    click(locator);
+    if (text != null) { //Если вводимый текст совпадает с данными в поле ввода - поле пропускается
+      String existingText = wd.findElement(locator).getAttribute("value");
+      if (! text.equals(existingText)) {
+        wd.findElement(locator).clear();
+        wd.findElement(locator).sendKeys(text);
+      }
+    }
   }
 
   protected void click(By locator) {
@@ -22,7 +27,7 @@ public class BaseHelper {
   }
 
   protected boolean isElementPresent(By locator) {
-    try {
+    try { //Если элемент представлен на странице - возвращается true, если нет - false
       wd.findElement(locator);
       return true;
     } catch (NoSuchElementException ex) {
