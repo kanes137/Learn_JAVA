@@ -9,7 +9,7 @@ public class GroupModificationTests extends TestBase {
   public void testGroupModification() {
     app.getNavigationHelper().goToGroupPage();
     if (! app.getGroupHelper().isThereAGroup()) {
-      app.getGroupHelper().createGroup(new GroupData("Домашнее задание 4", "Домашнее задание  4", "Домашнее задание   4"));
+      app.getGroupHelper().createGroup(new GroupData("Модификация", "Модификация", "Модификация"));
     }
     app.getGroupHelper().selectGroup();
     app.getGroupHelper().initGroupModification();

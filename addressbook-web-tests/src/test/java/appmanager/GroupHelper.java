@@ -47,7 +47,7 @@ public class GroupHelper extends BaseHelper {
 
   public void createGroup(GroupData group) {
     initGroupCreation();
-    fillGroupForm(new GroupData("Домашнее задание 4", "Домашнее задание  4", "Домашнее задание   4"));
+    fillGroupForm(group);
     submitGroupCreation();
     returnGroupPage();
   }
