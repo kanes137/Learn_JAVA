@@ -16,3 +16,11 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 .idea/workspace.xml
 
+addressbook-web-tests/out/test/classes/ru/test/homework/ContactCreationTests.class
+addressbook-web-tests/out/test/classes/ru/test/homework/ContactDeletionTests.class
+addressbook-web-tests/out/test/classes/ru/test/homework/ContactModificationTests.class
+addressbook-web-tests/out/test/classes/ru/test/homework/GroupCreationTests.class
+addressbook-web-tests/out/test/classes/ru/test/homework/GroupDeletionTests.class
+addressbook-web-tests/out/test/classes/ru/test/homework/GroupModificationTests.class
+addressbook-web-tests/out/test/classes/ru/test/homework/TestBase.class
+*.class
