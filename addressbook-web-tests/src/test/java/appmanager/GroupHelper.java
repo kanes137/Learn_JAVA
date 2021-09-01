@@ -2,6 +2,7 @@ package appmanager;
 
 import model.GroupData;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 public class GroupHelper extends BaseHelper {
@@ -42,5 +43,16 @@ public class GroupHelper extends BaseHelper {
 
   public void submitGroupModification() {
     click(By.name("update"));
+  }
+
+  public void createGroup(GroupData group) {
+    initGroupCreation();
+    fillGroupForm(new GroupData("Домашнее задание 4", "Домашнее задание  4", "Домашнее задание   4"));
+    submitGroupCreation();
+    returnGroupPage();
+  }
+
+  public boolean isThereAGroup() {
+    return isElementPresent(By.name("selected[]"));
   }
 }
