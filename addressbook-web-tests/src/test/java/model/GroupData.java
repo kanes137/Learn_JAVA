@@ -1,25 +1,25 @@
 package model;
 
 public class GroupData {
-  private final String field1;
-  private final String field2;
-  private final String field3;
+  private final String name;
+  private final String header;
+  private final String footer;
 
-  public GroupData(String field1, String field2, String field3) {
-    this.field1 = field1;
-    this.field2 = field2;
-    this.field3 = field3;
+  public GroupData(String name, String header, String footer) {
+    this.name = name;
+    this.header = header;
+    this.footer = footer;
   }
 
-  public String getField1() {
-    return field1;
+  public String getName() {
+    return name;
   }
 
-  public String getField2() {
-    return field2;
+  public String getHeader() {
+    return header;
   }
 
-  public String getField3() {
-    return field3;
+  public String getFooter() {
+    return footer;
   }
 }
