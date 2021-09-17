@@ -2,6 +2,7 @@ package tests;
 
 import model.GroupData;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Comparator;
@@ -9,12 +10,16 @@ import java.util.List;
 
 public class GroupModificationTests extends TestBase {
 
-  @Test
-  public void testGroupModification() {
+  @BeforeMethod
+  public void ensurePreconditions() {
     app.getNavigationHelper().goToGroupPage();
     if (! app.getGroupHelper().isThereAGroup()) {
-      app.getGroupHelper().createGroup(new GroupData("test1", "Модификация", "Модификация"));
+      app.getGroupHelper().createGroup(new GroupData("test1", "Удаление", "Удаление"));
     }
+  }
+
+  @Test
+  public void testGroupModification() {
     List<GroupData> before = app.getGroupHelper().getGroupList();
     app.getGroupHelper().selectGroup(before.size() - 1);
     app.getGroupHelper().initGroupModification();
