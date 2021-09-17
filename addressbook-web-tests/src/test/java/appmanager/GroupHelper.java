@@ -32,11 +32,11 @@ public class GroupHelper extends BaseHelper {
     click(By.name("new"));
   }
 
-  public void delete() {
+  public void deleteSelectedGroups() {
     click(By.name("delete"));
   }
 
-  public void select(int index) {
+  public void selectGroup(int index) {
     wd.findElements(By.name("selected[]")).get(index).click();
   }
 
@@ -48,10 +48,24 @@ public class GroupHelper extends BaseHelper {
     click(By.name("update"));
   }
 
-  public void create(GroupData group) {
+  public void createGroup(GroupData group) {
     initGroupCreation();
     fillGroupForm(group);
     submitGroupCreation();
+    returnGroupPage();
+  }
+
+  public void delete(int index) {
+    selectGroup(index);
+    deleteSelectedGroups();
+    returnGroupPage();
+  }
+
+  public void modify(int index, GroupData group) {
+    selectGroup(index);
+    initGroupModification();
+    fillGroupForm(group);
+    submitGroupModification();
     returnGroupPage();
   }
 

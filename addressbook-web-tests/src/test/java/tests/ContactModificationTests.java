@@ -10,11 +10,11 @@ import java.util.List;
 
 public class ContactModificationTests extends TestBase {
 
-  @Test
+  @Test(enabled = false)
   public void testModificationContact() {
-    app.goTo().groupPage();
+    app.goTo().goToGroupPage();
     if (! app.group().isThereAGroup()) {
-      app.group().create(new GroupData("test1", "Создание", "Создание"));
+      app.group().createGroup(new GroupData("test1", "Создание", "Создание"));
     }
     app.goTo().goHome();
     if (! app.getContactHelper().isThereAContact()) {
