@@ -2,7 +2,6 @@ package tests;
 
 import model.ContactData;
 import model.GroupData;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -13,11 +12,11 @@ public class ContactCreationTests extends TestBase {
 
   @Test
   public void testContactCreation() throws Exception {
-    app.getNavigationHelper().goHome();
+    app.goTo().goHome();
     List<ContactData> before = app.getContactHelper().getContactList();
-    app.getNavigationHelper().goToGroupPage();
-    if (! app.getGroupHelper().isThereAGroup()) {
-      app.getGroupHelper().createGroup(new GroupData("test1", "Модификация", "Модификация"));
+    app.goTo().groupPage();
+    if (! app.group().isThereAGroup()) {
+      app.group().create(new GroupData("test1", "Модификация", "Модификация"));
     }
     ContactData contact = new ContactData("LOH", "Middlename", "Lastname", "nickname", "test1");
     app.getContactHelper().createContact((contact),true);
