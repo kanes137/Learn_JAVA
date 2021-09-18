@@ -20,7 +20,8 @@ public class ContactDeletionTests extends TestBase {
     }
     app.goTo().home();
     if (! app.contact().isThereAContact()) {
-      app.contact().create(new ContactData("Удаление", "Удаление", "Удаление", "Удаление", "test1"), true);
+      app.contact().create(new ContactData()
+              .withFirstname("Удаление").withMiddlename("Удаление").withLastname("Удаление").withNickname("Удаление").withGroup("test1"), true);
     }
   }
 
