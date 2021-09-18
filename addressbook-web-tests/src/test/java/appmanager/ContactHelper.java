@@ -1,14 +1,12 @@
 package appmanager;
 
 import model.ContactData;
-import model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -46,10 +44,6 @@ public class ContactHelper extends BaseHelper {
     click(By.linkText("add new"));
   }
 
-  public void selectContact(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
-  }
-
   private void selectContactById(int id) {
     wd.findElement(By.cssSelector("input[id='" + id + "']")).click();
   }
@@ -73,23 +67,10 @@ public class ContactHelper extends BaseHelper {
     goToHomePage();
   }
 
-  public void delete(int index) {
-    selectContact(index);
-    deleteSelectedContacts();
-    acceptAlert();
-  }
-
   public void delete(ContactData contact) {
     selectContactById(contact.getId());
     deleteSelectedContacts();
     acceptAlert();
-  }
-
-  public void modify(int index, ContactData contact) {
-    selectContact(index);
-    initContactModification();
-    fillContactForm(contact, false);
-    submitContactModification();
   }
 
   public void modify(ContactData contact) {
@@ -105,19 +86,6 @@ public class ContactHelper extends BaseHelper {
 
   public void acceptAlert() {
     wd.switchTo().alert().accept();
-  }
-
-  public List<ContactData> list() {
-    List<ContactData> contacts = new ArrayList<ContactData>();
-    List<WebElement> elements = wd.findElements(By.name("entry"));
-    for (WebElement element : elements) {
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      String lastname = element.findElement(By.xpath(".//td[2]")).getText();
-      String firstname = element.findElement(By.xpath(".//td[3]")).getText();
-      ContactData contact = new ContactData().withId(id).withFirstname(firstname).withLastname(lastname);
-      contacts.add(contact);
-    }
-    return contacts;
   }
 
   public Set<ContactData> all() {
