@@ -61,7 +61,7 @@ public class ContactHelper extends BaseHelper {
     click(By.xpath("//div[@id='content']/form/input[22]"));
   }
 
-  public void createContact(ContactData contactData, boolean creation) {
+  public void create(ContactData contactData, boolean creation) {
     initContactCreation();
     fillContactForm(contactData, creation);
     saveContact();
@@ -89,7 +89,7 @@ public class ContactHelper extends BaseHelper {
     wd.switchTo().alert().accept();
   }
 
-  public List<ContactData> getContactList() {
+  public List<ContactData> list() {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {

@@ -13,25 +13,25 @@ public class ContactModificationTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
-    app.goTo().goToGroupPage();
+    app.goTo().groupPage();
     if (! app.group().isThereAGroup()) {
       app.group().create(new GroupData()
               .withName("test1").withHeader("Модификация").withFooter("Модификация"));
     }
     app.goTo().home();
-    if (! app.getContactHelper().isThereAContact()) {
-      app.getContactHelper().createContact(new ContactData("Модиф", "Модиф", "Модиф", "Модиф", "test1"), true);
+    if (! app.contact().isThereAContact()) {
+      app.contact().create(new ContactData("Модиф", "Модиф", "Модиф", "Модиф", "test1"), true);
     }
   }
 
   @Test
   public void testModificationContact() {
-    List<ContactData> before = app.getContactHelper().getContactList();
+    List<ContactData> before = app.contact().list();
     int index = before.size() - 1;
     ContactData contact = new ContactData(before.get(index).getId(),"Модиф1", "test", "Модиф", "Модиф", null);
-    app.getContactHelper().modify(index, contact);
+    app.contact().modify(index, contact);
     app.goTo().home();
-    List<ContactData> after = app.getContactHelper().getContactList();
+    List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size());
 
     before.remove(index);
