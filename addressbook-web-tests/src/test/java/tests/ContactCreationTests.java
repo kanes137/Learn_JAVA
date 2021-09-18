@@ -10,13 +10,13 @@ import java.util.List;
 
 public class ContactCreationTests extends TestBase {
 
-  @Test(enabled = false)
+  @Test
   public void testContactCreation() throws Exception {
     app.goTo().goHome();
     List<ContactData> before = app.getContactHelper().getContactList();
     app.goTo().goToGroupPage();
     if (! app.group().isThereAGroup()) {
-      app.group().createGroup(new GroupData()
+      app.group().create(new GroupData()
               .withName("test1").withHeader("Модификация").withFooter("Модификация"));
     }
     ContactData contact = new ContactData("LOH", "Middlename", "Lastname", "nickname", "test1");

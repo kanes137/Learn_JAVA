@@ -54,7 +54,7 @@ public class GroupHelper extends BaseHelper {
     click(By.name("update"));
   }
 
-  public void createGroup(GroupData group) {
+  public void create(GroupData group) {
     initGroupCreation();
     fillGroupForm(group);
     submitGroupCreation();
