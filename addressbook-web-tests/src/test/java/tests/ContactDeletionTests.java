@@ -18,7 +18,7 @@ public class ContactDeletionTests extends TestBase {
       app.group().create(new GroupData()
               .withName("test1").withHeader("Модификация").withFooter("Модификация"));
     }
-    app.goTo().goHome();
+    app.goTo().home();
     if (! app.getContactHelper().isThereAContact()) {
       app.getContactHelper().createContact(new ContactData("Удаление", "Удаление", "Удаление", "Удаление", "test1"), true);
     }
@@ -27,14 +27,13 @@ public class ContactDeletionTests extends TestBase {
   @Test
   public void testContactDeletion() {
     List<ContactData> before = app.getContactHelper().getContactList();
-    app.getContactHelper().selectContact(before.size() - 1);
-    app.getContactHelper().deleteSelectedContacts();
-    app.goTo().acceptAlert();
-    app.goTo().goHome();
+    int index = before.size() - 1;
+    app.getContactHelper().delete(index);
+    app.goTo().home();
     List<ContactData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size() - 1);
 
-    before.remove(before.size() - 1);
+    before.remove(index);
     Comparator<? super ContactData> ById = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
     before.sort(ById);
     after.sort(ById);

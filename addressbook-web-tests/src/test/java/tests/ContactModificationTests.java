@@ -18,7 +18,7 @@ public class ContactModificationTests extends TestBase {
       app.group().create(new GroupData()
               .withName("test1").withHeader("Модификация").withFooter("Модификация"));
     }
-    app.goTo().goHome();
+    app.goTo().home();
     if (! app.getContactHelper().isThereAContact()) {
       app.getContactHelper().createContact(new ContactData("Модиф", "Модиф", "Модиф", "Модиф", "test1"), true);
     }
@@ -27,16 +27,14 @@ public class ContactModificationTests extends TestBase {
   @Test
   public void testModificationContact() {
     List<ContactData> before = app.getContactHelper().getContactList();
-    app.getContactHelper().selectContact(before.size() - 1);
-    app.getContactHelper().initContactModification();
-    ContactData contact = new ContactData(before.get(before.size() - 1).getId(),"Модиф1", "test", "Модиф", "Модиф", null);
-    app.getContactHelper().fillContactForm(contact, false);
-    app.getContactHelper().submitContactModification();
-    app.goTo().goHome();
+    int index = before.size() - 1;
+    ContactData contact = new ContactData(before.get(index).getId(),"Модиф1", "test", "Модиф", "Модиф", null);
+    app.getContactHelper().modify(index, contact);
+    app.goTo().home();
     List<ContactData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size());
 
-    before.remove(before.size() - 1);
+    before.remove(index);
     before.add(contact);
     Comparator<? super ContactData> ById = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
     before.sort(ById);

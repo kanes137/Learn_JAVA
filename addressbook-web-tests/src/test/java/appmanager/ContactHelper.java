@@ -68,8 +68,25 @@ public class ContactHelper extends BaseHelper {
     goToHomePage();
   }
 
+  public void delete(int index) {
+    selectContact(index);
+    deleteSelectedContacts();
+    acceptAlert();
+  }
+
+  public void modify(int index, ContactData contact) {
+    selectContact(index);
+    initContactModification();
+    fillContactForm(contact, false);
+    submitContactModification();
+  }
+
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
+  }
+
+  public void acceptAlert() {
+    wd.switchTo().alert().accept();
   }
 
   public List<ContactData> getContactList() {

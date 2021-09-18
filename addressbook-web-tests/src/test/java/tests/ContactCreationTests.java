@@ -12,7 +12,7 @@ public class ContactCreationTests extends TestBase {
 
   @Test
   public void testContactCreation() throws Exception {
-    app.goTo().goHome();
+    app.goTo().home();
     List<ContactData> before = app.getContactHelper().getContactList();
     app.goTo().goToGroupPage();
     if (! app.group().isThereAGroup()) {
