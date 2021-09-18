@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 public class ContactDeletionTests extends TestBase {
 
@@ -19,7 +20,7 @@ public class ContactDeletionTests extends TestBase {
               .withName("test1").withHeader("Модификация").withFooter("Модификация"));
     }
     app.goTo().home();
-    if (! app.contact().isThereAContact()) {
+    if (app.contact().all().size() == 0) {
       app.contact().create(new ContactData()
               .withFirstname("Удаление").withMiddlename("Удаление").withLastname("Удаление").withNickname("Удаление").withGroup("test1"), true);
     }
@@ -27,17 +28,14 @@ public class ContactDeletionTests extends TestBase {
 
   @Test
   public void testContactDeletion() {
-    List<ContactData> before = app.contact().list();
-    int index = before.size() - 1;
-    app.contact().delete(index);
+    Set<ContactData> before = app.contact().all();
+    ContactData deletedContact = before.iterator().next();
+    app.contact().delete(deletedContact);
     app.goTo().home();
-    List<ContactData> after = app.contact().list();
+    Set<ContactData> after = app.contact().all();
     Assert.assertEquals(after.size(), before.size() - 1);
 
-    before.remove(index);
-    Comparator<? super ContactData> ById = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
-    before.sort(ById);
-    after.sort(ById);
+    before.remove(deletedContact);
     Assert.assertEquals(after, before);
   }
 }
