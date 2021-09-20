@@ -1,25 +1,24 @@
 package tests;
 
 import model.GroupData;
-import org.testng.Assert;
+import model.Groups;
 import org.testng.annotations.Test;
 
-import java.util.Set;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 public class GroupCreationTests extends TestBase {
 
   @Test
   public void testGroupCreation() throws Exception {
     app.goTo().groupPage();
-    Set<GroupData> before = app.group().all();
+    Groups before = app.group().all();
     GroupData group = new GroupData()
             .withName("test1").withHeader("Создание").withFooter("Создание");
     app.group().create(group);
-    Set<GroupData> after = app.group().all();
-    Assert.assertEquals(after.size(), before.size() + 1);
-
-    group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt());
-    before.add(group);
-    Assert.assertEquals(after,before);
+    Groups after = app.group().all();
+    assertEquals(after.size(), before.size() + 1);
+    assertThat(after, equalTo(before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
 }
