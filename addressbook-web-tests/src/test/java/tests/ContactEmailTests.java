@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class ContactPhoneTests extends TestBase{
+public class ContactEmailTests extends TestBase{
 
   @BeforeMethod
   public void ensurePreconditions() {
@@ -23,9 +23,9 @@ public class ContactPhoneTests extends TestBase{
     app.goTo().home();
     if (app.contact().all().size() == 0) {
       app.contact().create(new ContactData()
-              .withFirstname("test").withMiddlename("test").withLastname("test")
-              .withNickname("test").withGroup("test1").withHomePhone("+7(905) 015 - 06 - 41")
-              .withMobilePhone("8 8412 34 26 89").withWorkPhone("76-22-12"), true);
+              .withFirstname("LOH").withMiddlename("Middlename").withLastname("Lastname").withNickname("nickname").withGroup("test1")
+              .withHomePhone("+7(905) 015 - 06 - 41").withMobilePhone("8 8412 34 26 89").withWorkPhone("76-22-12")
+              .withAddress("Пенза, военный городок, 137-39").withEmail("ya1@ya.ru").withEmail2("ya2@ya.ru").withEmail3("ya3@ya.ru"), true);
     }
   }
 
@@ -34,17 +34,12 @@ public class ContactPhoneTests extends TestBase{
     app.goTo().home();
     ContactData contact = app.contact().all().iterator().next();
     ContactData contactInfoFromEditForm = app.contact().intoFromEditForm(contact);
-    assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
+    assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactInfoFromEditForm)));
   }
 
-  private String mergePhones(ContactData contact) {
-    return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone())
+  private String mergeEmails(ContactData contact) {
+    return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3())
             .stream().filter((s) -> !s.equals(""))//Выбрасывает из потока пустые строчки
-            .map(ContactPhoneTests::cleaned)//map - применить ко всем элементам потока какую то функцию
             .collect(Collectors.joining("\n"));//коллектор, который склеивает все элементы в строку(\n вставляется между склеенными элементами)
-  }
-
-  public static String cleaned(String phone) {
-    return phone.replaceAll("[-() .]", "");
   }
 }
