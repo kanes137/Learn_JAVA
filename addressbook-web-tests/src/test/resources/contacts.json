@@ -1,0 +1,30 @@
+[
+  {
+    "firstname": "LOH 0",
+    "middlename": "Middlename 0",
+    "lastname": "Lastname 0",
+    "nickname": "nickname 0",
+    "group": "test1 0",
+    "address": "Пенза, военный городок, 137-39",
+    "homePhone": "+7(905) 015 - 06 - 41",
+    "mobilePhone": "8 8412 34 26 89",
+    "workPhone": "76-22-12",
+    "email": "ya1@ya.ru",
+    "email2": "ya2@ya.ru",
+    "email3": "ya3@ya.ru"
+  },
+  {
+    "firstname": "LOH 1",
+    "middlename": "Middlename 1",
+    "lastname": "Lastname 1",
+    "nickname": "nickname 1",
+    "group": "test1 1",
+    "address": "Пенза, военный городок, 137-39",
+    "homePhone": "+7(905) 015 - 06 - 41",
+    "mobilePhone": "8 8412 34 26 89",
+    "workPhone": "76-22-12",
+    "email": "ya1@ya.ru",
+    "email2": "ya2@ya.ru",
+    "email3": "ya3@ya.ru"
+  }
+]
