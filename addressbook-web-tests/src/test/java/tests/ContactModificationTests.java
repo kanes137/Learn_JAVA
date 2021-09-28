@@ -6,6 +6,8 @@ import model.GroupData;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.File;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.Assert.assertEquals;
@@ -32,8 +34,9 @@ public class ContactModificationTests extends TestBase {
   public void testModificationContact() {
     Contacts before = app.contact().all();
     ContactData modifyContact = before.iterator().next();
+    File photo = new File("src/test/resources/TestPhoto.jpg");
     ContactData contact = new ContactData()
-            .withId(modifyContact.getId()).withFirstname("Модиф1").withMiddlename("test").withLastname("Модиф").withNickname("Модиф").withGroup(null);
+            .withId(modifyContact.getId()).withFirstname("Модиф1").withMiddlename("test").withLastname("Модиф").withNickname("Модиф").withPhoto(photo).withGroup(null);
     app.contact().modify(contact);
     app.goTo().home();
     Contacts after = app.contact().all();

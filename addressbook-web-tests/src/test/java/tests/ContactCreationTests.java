@@ -1,18 +1,41 @@
 package tests;
 
+import com.google.gson.Gson;
 import model.ContactData;
 import model.Contacts;
 import model.GroupData;
+import org.openqa.selenium.json.TypeToken;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.Assert.assertEquals;
 
 public class ContactCreationTests extends TestBase {
+
+  @DataProvider
+  public Iterator<Object[]> validContactsFromJson() throws IOException {
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.json")));
+    String json = "";
+    String line = reader.readLine();
+    while (line != null) {
+      json += line;
+      line = reader.readLine();
+    }
+    Gson gson = new Gson();
+    List<ContactData> contacts = gson.fromJson(json, new TypeToken<List<ContactData>>(){}.getType());// List<GroupData>.class
+    return contacts.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
+  }
 
   @BeforeMethod
   public void ensurePreconditions() {
@@ -23,15 +46,10 @@ public class ContactCreationTests extends TestBase {
     }
   }
 
-  @Test
-  public void testContactCreation() throws Exception {
+  @Test(dataProvider = "validContactsFromJson")
+  public void testContactCreation(ContactData contact) throws Exception {
     app.goTo().home();
     Contacts before = app.contact().all();
-    File photo = new File("src/test/resources/TestPhoto.jpg");
-    ContactData contact = new ContactData()
-            .withFirstname("LOH").withMiddlename("Middlename").withLastname("Lastname").withNickname("nickname").withPhoto(photo).withGroup("test1")
-            .withHomePhone("+7(905) 015 - 06 - 41").withMobilePhone("8 8412 34 26 89").withWorkPhone("76-22-12")
-            .withAddress("Пенза, военный городок, 137-39").withEmail("ya1@ya.ru").withEmail2("ya2@ya.ru").withEmail3("ya3@ya.ru");
     app.contact().create((contact),true);
     Contacts after = app.contact().all();
     assertEquals(after.size() - 1, before.size());
