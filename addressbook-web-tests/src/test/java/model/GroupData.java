@@ -1,8 +1,13 @@
 package model;
 
+import com.google.gson.annotations.Expose;
+
 public class GroupData {
+  @Expose
   private String name;
+  @Expose
   private String header;
+  @Expose
   private String footer;
   private int id = Integer.MAX_VALUE;;
 
