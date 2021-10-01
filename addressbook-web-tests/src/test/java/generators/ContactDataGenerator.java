@@ -51,19 +51,19 @@ public class ContactDataGenerator {
   private void saveAsJson(List<ContactData> contacts, File file) throws IOException {
     Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
     String json = gson.toJson(contacts);
-    Writer writer = new FileWriter(file);
-    writer.write(json);
-    writer.close();
+    try (Writer writer = new FileWriter(file)) { //try автоматически закрывает файл(writer/reader) - writer.close();
+      writer.write(json);
+    }
   }
 
   private static void saveAsCsv(List<ContactData> contacts, File file) throws IOException {
-    Writer writer = new FileWriter(file);
-    for (ContactData contact : contacts){
-      writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getFirstname(), contact.getMiddlename(), contact.getLastname(),
-              contact.getNickname(), contact.getGroup(), contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone(),
-              contact.getAddress(), contact.getEmail(), contact.getEmail2(), contact.getEmail3()));
+    try(Writer writer = new FileWriter(file)) { //try автоматически закрывает файл(writer/reader) - writer.close();
+      for (ContactData contact : contacts){
+        writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getFirstname(), contact.getMiddlename(), contact.getLastname(),
+                contact.getNickname(), contact.getGroup(), contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone(),
+                contact.getAddress(), contact.getEmail(), contact.getEmail2(), contact.getEmail3()));
+      }
     }
-    writer.close();
   }
 
   private static List<ContactData> generateContact(int count) {
