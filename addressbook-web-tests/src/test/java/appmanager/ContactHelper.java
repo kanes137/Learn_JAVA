@@ -62,10 +62,6 @@ public class ContactHelper extends BaseHelper {
     click(By.xpath("//input[@value='Delete']"));
   }
 
-  public void initContactModification() {
-    click(By.xpath("//img[@alt='Edit']"));
-  }
-
   public void submitContactModification() {
     click(By.xpath("//div[@id='content']/form/input[22]"));
   }
@@ -84,10 +80,13 @@ public class ContactHelper extends BaseHelper {
   }
 
   public void modify(ContactData contact) {
-    selectContactById(contact.getId());
-    initContactModification();
+    initContactModificationById(contact.getId());
     fillContactForm(contact, false);
     submitContactModification();
+  }
+
+  public void initContactModification() {
+    click(By.xpath("//img[@alt='Edit']"));
   }
 
   public boolean isThereAContact() {
