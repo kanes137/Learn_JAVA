@@ -16,10 +16,39 @@ task testGroups (type: Test) {
     useTestNG() {
         suites "src/test/resources/testng-groups.xml"
     }
+    if (project.hasProperty('browser')) { //Если не указываем переменной, -Pbrowser=firefox - запускается дефолтный браузер
+        systemProperty 'browser', "${browser}" //Внутри двойных кавычек выполняется подстановка переменной
+        /*
+        При запуске тестов при помощи gradlew, можно передать свойство запускаемого браузера
+        gradlew -Pbrowser=firefox testContacts
+         */
+    }
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}" //Внутри двойных кавычек выполняется подстановка переменной
+        /*
+        При запуске тестов при помощи gradlew, можно передать конфигурацию тестового стенда
+        gradlew -Ptarget=local testContacts
+         */
+    }
 }
 
 task testContacts (type: Test) {
     useTestNG() {
         suites "src/test/resources/testng-contacts.xml"
+    }
+    if (project.hasProperty('browser')) {
+        //Если не указываем переменной, -Pbrowser=firefox - запускается дефолтный браузер
+        systemProperty 'browser', "${browser}" //Внутри двойных кавычек выполняется подстановка переменной
+        /*
+        При запуске тестов при помощи gradlew, можно передать свойство запускаемого браузера
+        gradlew -Pbrowser=firefox testContacts
+         */
+    }
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}" //Внутри двойных кавычек выполняется подстановка переменной
+        /*
+        При запуске тестов при помощи gradlew, можно передать конфигурацию тестового стенда
+        gradlew -Ptarget=local testContacts
+         */
     }
 }
