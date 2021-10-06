@@ -24,3 +24,4 @@ addressbook-web-tests/out/test/classes/ru/test/homework/GroupDeletionTests.class
 addressbook-web-tests/out/test/classes/ru/test/homework/GroupModificationTests.class
 addressbook-web-tests/out/test/classes/ru/test/homework/TestBase.class
 *.class
+*.log
