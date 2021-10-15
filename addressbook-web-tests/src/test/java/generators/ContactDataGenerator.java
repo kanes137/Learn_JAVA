@@ -16,6 +16,8 @@ import java.util.List;
 
 public class ContactDataGenerator {
 
+  //-c 3 -f src\test\resources\contacts.json -d json
+
   @Parameter(names = "-c", description = "Contacts count")
   private int count;
 
@@ -61,7 +63,7 @@ public class ContactDataGenerator {
       for (ContactData contact : contacts){
         writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getFirstname(), contact.getMiddlename(), contact.getLastname(),
                 contact.getNickname(), contact.getGroup(), contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone(),
-                contact.getAddress(), contact.getEmail(), contact.getEmail2(), contact.getEmail3()));
+                contact.getAddress(), contact.getEmail(), contact.getEmail2(), contact.getEmail3(), contact.getPhoto()));
       }
     }
   }
@@ -73,7 +75,8 @@ public class ContactDataGenerator {
               .withFirstname(String.format("LOH %s", i)).withMiddlename(String.format("Middlename %s", i)).withLastname(String.format("Lastname %s", i))
               .withNickname(String.format("nickname %s", i)).withGroup("test1")
               .withHomePhone("+7(905) 015 - 06 - 41").withMobilePhone("8 8412 34 26 89").withWorkPhone("76-22-12")
-              .withAddress("Пенза, военный городок, 137-39").withEmail("ya1@ya.ru").withEmail2("ya2@ya.ru").withEmail3("ya3@ya.ru"));
+              .withAddress("Пенза, военный городок, 137-39").withEmail("ya1@ya.ru").withEmail2("ya2@ya.ru").withEmail3("ya3@ya.ru")
+              .withPhoto(new File("src/test/resources/TestPhoto.jpg")));
     }
     return contacts;
   }

@@ -11,7 +11,8 @@
     "workPhone": "76-22-12",
     "email": "ya1@ya.ru",
     "email2": "ya2@ya.ru",
-    "email3": "ya3@ya.ru"
+    "email3": "ya3@ya.ru",
+    "photo": "src\\test\\resources\\TestPhoto.jpg"
   },
   {
     "firstname": "LOH 1",
@@ -25,6 +26,22 @@
     "workPhone": "76-22-12",
     "email": "ya1@ya.ru",
     "email2": "ya2@ya.ru",
-    "email3": "ya3@ya.ru"
+    "email3": "ya3@ya.ru",
+    "photo": "src\\test\\resources\\TestPhoto.jpg"
+  },
+  {
+    "firstname": "LOH 2",
+    "middlename": "Middlename 2",
+    "lastname": "Lastname 2",
+    "nickname": "nickname 2",
+    "group": "test1",
+    "address": "Пенза, военный городок, 137-39",
+    "homePhone": "+7(905) 015 - 06 - 41",
+    "mobilePhone": "8 8412 34 26 89",
+    "workPhone": "76-22-12",
+    "email": "ya1@ya.ru",
+    "email2": "ya2@ya.ru",
+    "email3": "ya3@ya.ru",
+    "photo": "src\\test\\resources\\TestPhoto.jpg"
   }
 ]
