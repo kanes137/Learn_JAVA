@@ -23,6 +23,7 @@ public class ApplicationManager {
   private GroupHelper groupHelper;
   private NavigationHelper navigationHelper;
   private String browser;
+  private DbHelper dbHelper;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -35,6 +36,9 @@ public class ApplicationManager {
     /*
     Читаем содержимое файла local.properties
      */
+
+    dbHelper = new DbHelper();
+
     if (browser.equals(BrowserType.FIREFOX)){
       wd = new FirefoxDriver();
     } else if (browser.equals(BrowserType.CHROME)){
@@ -77,5 +81,9 @@ public class ApplicationManager {
 
   public ContactHelper contact() {
     return contactHelper;
+  }
+
+  public DbHelper db() {
+    return dbHelper;
   }
 }
